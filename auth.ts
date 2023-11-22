@@ -1,5 +1,7 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
 import GitHub from 'next-auth/providers/github'
+import Google from 'next-auth/providers/google'
+import GoogleProvider from 'next-auth/providers/google'
 
 declare module 'next-auth' {
   interface Session {
@@ -15,12 +17,31 @@ export const {
   auth,
   CSRF_experimental // will be removed in future
 } = NextAuth({
-  providers: [GitHub],
+  providers: [
+    GitHub,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code'
+        }
+      }
+    })
+  ],
   callbacks: {
-    jwt({ token, profile }) {
+    jwt({ token, account, profile }) {
       if (profile) {
-        token.id = profile.id
-        token.image = profile.avatar_url || profile.picture
+        if (account && account.provider === 'google') {
+          token.id = profile.sub
+          token.image = profile.picture
+        } else if (account && account.provider === 'github') {
+          token.id = profile.id
+          token.image = profile.avatar_url || profile.picture
+        }
       }
       return token
     },
