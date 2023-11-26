@@ -29,7 +29,7 @@ export function LoginButton({
       variant="outline"
       onClick={() => {
         setIsLoading(true)
-        signIn(provider, { callbackUrl: `http://localhost:3000/` })
+        signIn(provider, { callbackUrl: `/` })
       }}
       disabled={isLoading}
       className={cn(className)}
