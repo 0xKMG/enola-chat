@@ -30,8 +30,9 @@ export async function getChats(userId?: string | null) {
 }
 
 export async function getChat(id: string, userId: string) {
-  const chat = await kv.hgetall<Chat>(`chat:${id}`)
-  console.log(chat)
+  let rawChat = await kv.hgetall<Chat>(`chat:${id}`)
+  const uid = await kv.hget(`chat:${id}`, 'userId')
+  const chat = { ...rawChat!, userId: uid }
 
   if (!chat || (userId && chat.userId !== `uid-${userId}`)) {
     console.log('retunr null', chat?.userId, userId)
