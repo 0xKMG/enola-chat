@@ -1,5 +1,4 @@
 import { auth } from '@/auth'
-import { LoginButton } from '@/components/login-button'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import googleLogo from '@/public/google.png'
