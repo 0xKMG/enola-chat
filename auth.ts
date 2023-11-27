@@ -9,6 +9,7 @@ declare module 'next-auth' {
     user: {
       /** The user's id. */
       id: string
+      sub: string
     } & DefaultSession['user']
   }
 }
@@ -23,7 +24,7 @@ export const {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      allowDangerousEmailAccountLinking: true  
+      allowDangerousEmailAccountLinking: true
     })
   ],
   callbacks: {
