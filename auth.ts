@@ -23,21 +23,25 @@ export const {
     GitHub,
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      allowDangerousEmailAccountLinking: true
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
   callbacks: {
-    jwt({ token, account, profile }) {
+    jwt: async ({ token, profile }) => {
+      console.log(profile)
       if (profile) {
-        if (account && account.provider === 'google') {
-          token.id = profile.sub
-          token.image = profile.picture
-        } else if (account && account.provider === 'github') {
+        if (profile.sub) {
+          // Google profiles have a 'sub' field
+          token.id = String(profile.sub)
+        } else if (profile.id) {
+          // GitHub profiles have an 'id' field
           token.id = profile.id
-          token.image = profile.avatar_url || profile.picture
+        }
+        if (profile.picture) {
+          token.image = profile.picture
         }
       }
+      console.log(token)
       return token
     },
     authorized({ auth }) {

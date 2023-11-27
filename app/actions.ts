@@ -35,7 +35,6 @@ export async function getChat(id: string, userId: string) {
   const chat = { ...rawChat!, userId: uid }
 
   if (!chat || (userId && chat.userId !== `uid-${userId}`)) {
-    console.log('retunr null', chat?.userId, userId)
     return null
   }
 
