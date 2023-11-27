@@ -45,6 +45,7 @@ export async function removeChat({ id, path }: { id: string; path: string }) {
   const session = await auth()
 
   if (!session) {
+    console.log('No session in removeChat function')
     return {
       error: 'Unauthorized'
     }
@@ -52,7 +53,9 @@ export async function removeChat({ id, path }: { id: string; path: string }) {
 
   const uid = await kv.hget<string>(`chat:${id}`, 'userId')
 
-  if (uid !== session?.user?.id) {
+  console.log('uid in removeChat function:', uid)
+
+  if (uid !== `uid-${session?.user?.id}`) {
     return {
       error: 'Unauthorized'
     }

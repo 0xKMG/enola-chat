@@ -31,11 +31,4 @@ export default async function SignInPage() {
       </div>
     </div>
   )
-
-  //   return (
-  //     <div className="flex h-[calc(100vh-theme(spacing.16))] items-center justify-center py-10">
-  //       <LoginButton provider="github" />
-  //       <LoginButton provider="google" />
-  //     </div>
-  //   )
 }
