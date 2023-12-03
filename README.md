@@ -1,10 +1,10 @@
 <a href="https://chat.vercel.ai/">
   <img alt="Next.js 13 and app template Router-ready AI chatbot." src="https://chat.vercel.ai/opengraph-image.png">
-  <h1 align="center">Next.js AI Chatbot</h1>
+  <h1 align="center">Enola - you're not alone</h1>
 </a>
 
 <p align="center">
-  An open-source AI chatbot app template built with Next.js, the Vercel AI SDK, OpenAI, and Vercel KV.
+  AI chatbot app built by the Enola Team, designed to support your mental well-being journey.
 </p>
 
 <p align="center">
@@ -45,7 +45,6 @@ You can deploy your own version of the Next.js AI Chatbot to Vercel with one cli
 Follow the steps outlined in the [quick start guide](https://vercel.com/docs/storage/vercel-kv/quickstart#create-a-kv-database) provided by Vercel. This guide will assist you in creating and configuring your KV database instance on Vercel, enabling your application to interact with it.
 
 Remember to update your environment variables (`KV_URL`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`) in the `.env` file with the appropriate credentials provided during the KV database setup.
-
 
 ## Running locally
 

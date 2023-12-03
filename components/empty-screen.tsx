@@ -29,7 +29,7 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
       <div className="rounded-lg border bg-background p-8">
         <h1 className="mb-2 text-lg font-semibold">Welcome to Enola Chat!</h1>
         <p className="mb-2 leading-normal text-muted-foreground">
-          This is a AI chatbot app built by the Enola Team, designed to support
+          This is an AI chatbot app built by the Enola Team, designed to support
           your mental well-being journey.
         </p>
         <p className="leading-normal text-muted-foreground">
